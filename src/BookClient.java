@@ -8,6 +8,10 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import flexjson.JSON;
+import flexjson.JSONDeserializer;
+import flexjson.JSONSerializer;
+
 /*
  * Aufgabe 01.2: Bei der Interoperabilitaet muss drauf geachtet werden, dass die Attribute der 
  * Book-Klasse die selbe Reihenfolge haben, ausserdem muessen die Variablenname gleich sein, 
@@ -62,6 +66,7 @@ public class BookClient {
   public static void buecher_laden(File server) {
     FileInputStream ifs;
     ObjectInputStream ois = null;
+    JSONDeserializer<Book> deserializer = new JSONDeserializer<>();
     
     try {
     	ifs = new FileInputStream(server);
@@ -69,7 +74,7 @@ public class BookClient {
 	    
 	    try {
 	    	while(true) {
-	    		Book tmp = (Book) ois.readObject();
+	    		Book tmp = deserializer.deserialize((String)ois.readObject());
 	    		books.add(tmp);
 	    	}
 	    } catch (EOFException e) {
@@ -122,6 +127,7 @@ public class BookClient {
   public static void buecher_speichern(File server) {
 	    FileOutputStream ofs;
 	    ObjectOutputStream oos = null;
+	    JSONSerializer serializer = new JSONSerializer();
 	    
 	    try {
 	    	ofs = new FileOutputStream(server);
@@ -129,7 +135,7 @@ public class BookClient {
 		    
 		    try {
 		    	for(Book e: books) {
-		    		oos.writeObject(e);
+		    		oos.writeObject(serializer.serialize(e));
 		    	}
 		    	System.out.println("Buecher erfolgreich gespeichert!");
 		    } catch (EOFException e) {
