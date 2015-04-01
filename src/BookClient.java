@@ -1,19 +1,27 @@
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+/*
+ * Aufgabe 01.2: Bei der Interoperabilitaet muss drauf geachtet werden, dass die Attribute der 
+ * Book-Klasse die selbe Reihenfolge haben, ausserdem muessen die Variablenname gleich sein, 
+ * andernfall wird fuer diese Werte beim lesen "null" eingetragen. 
+ * 
+ * Das Protokoll wird durch die Book Klasse festegelgt, da abhaehngig von ihr die Daten anders
+ * darfgestellt werden.  
+ */
  
 public class BookClient {
  
   protected static ArrayList<Book> books = new ArrayList<>();
   protected static Scanner sc = new Scanner(System.in);
-  protected static File bookFile = new File("books.txt");
+  protected static File bookFile = new File("books.stream");
   
   //protected ObjectInputStream bookInputFile;
   //protected ObjectOutputStream bookOutputFile;
