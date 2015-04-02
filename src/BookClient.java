@@ -1,3 +1,4 @@
+import java.io.BufferedWriter;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,17 +21,17 @@ import flexjson.JSONSerializer;
  * 
  * Das Protokoll wird durch die Book Klasse festegelgt, da abhaehngig von ihr die Daten anders
  * darfgestellt werden.  
+ * 
+ * Aufgabe 01.3: Der Vorteil von der JSON Verison ist, das die Daten in einem einheitlichen Format 
+ * sind und Menschenlesbar gespeichert sind. Es ist dadruch moeglich die Dateien anderweitig zu verwenden
+ * bzw. in anderen Clients die auch einen JSON Parser besitzen zu lesen und zu veraendern.
  */
  
 public class BookClient {
  
   protected static ArrayList<Book> books = new ArrayList<>();
   protected static Scanner sc = new Scanner(System.in);
-  protected static File bookFile = new File("books_json.txt");
-  
-  //protected ObjectInputStream bookInputFile;
-  //protected ObjectOutputStream bookOutputFile;
-  
+  protected static File bookFile = new File("books.json");
  
   public static void main(String[] args) {
  
@@ -68,7 +69,6 @@ public class BookClient {
     FileInputStream ifs;
     ObjectInputStream ois = null;
     JSONDeserializer<ArrayList<Book>> deserializer = new JSONDeserializer<>();
-   
     
     try {
     	ifs = new FileInputStream(server);
@@ -78,13 +78,13 @@ public class BookClient {
 	    	while(true) {
 	    		String tmp = (String)ois.readObject();
 	    		books = deserializer.deserialize(tmp);
+
 	    	}
 	    } catch (EOFException e) {
 	    	System.out.println("Alle Buecher geladen");
 	    } catch (ClassNotFoundException | IOException e) {
 	    	e.printStackTrace();
-	    }
-	    
+	    }	    
     } catch (IOException e) {
     	System.out.println("Wat?!");
     	e.printStackTrace();
@@ -134,11 +134,7 @@ public class BookClient {
 	    try {
 	    	ofs = new FileOutputStream(server);
 	    	oos = new ObjectOutputStream(ofs);
-		    
 		    try {
-		    	//for(Book e: books) {
-		    	//	oos.writeObject(serializer.serialize(e));
-		    	//}
 		    	String tmp = serializer.serialize(books);
 		    	oos.writeObject(tmp);
 
