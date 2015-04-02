@@ -2,13 +2,14 @@ import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import flexjson.JSON;
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 
@@ -25,7 +26,7 @@ public class BookClient {
  
   protected static ArrayList<Book> books = new ArrayList<>();
   protected static Scanner sc = new Scanner(System.in);
-  protected static File bookFile = new File("books.stream");
+  protected static File bookFile = new File("books_json.txt");
   
   //protected ObjectInputStream bookInputFile;
   //protected ObjectOutputStream bookOutputFile;
@@ -66,7 +67,8 @@ public class BookClient {
   public static void buecher_laden(File server) {
     FileInputStream ifs;
     ObjectInputStream ois = null;
-    JSONDeserializer<Book> deserializer = new JSONDeserializer<>();
+    JSONDeserializer<ArrayList<Book>> deserializer = new JSONDeserializer<>();
+   
     
     try {
     	ifs = new FileInputStream(server);
@@ -74,8 +76,8 @@ public class BookClient {
 	    
 	    try {
 	    	while(true) {
-	    		Book tmp = deserializer.deserialize((String)ois.readObject());
-	    		books.add(tmp);
+	    		String tmp = (String)ois.readObject();
+	    		books = deserializer.deserialize(tmp);
 	    	}
 	    } catch (EOFException e) {
 	    	System.out.println("Alle Buecher geladen");
@@ -134,9 +136,12 @@ public class BookClient {
 	    	oos = new ObjectOutputStream(ofs);
 		    
 		    try {
-		    	for(Book e: books) {
-		    		oos.writeObject(serializer.serialize(e));
-		    	}
+		    	//for(Book e: books) {
+		    	//	oos.writeObject(serializer.serialize(e));
+		    	//}
+		    	String tmp = serializer.serialize(books);
+		    	oos.writeObject(tmp);
+
 		    	System.out.println("Buecher erfolgreich gespeichert!");
 		    } catch (EOFException e) {
 		    	//pass
