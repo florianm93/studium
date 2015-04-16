@@ -1,35 +1,38 @@
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 class TCPServer extends Thread {
-  public static void main(String argv[]) throws Exception {
-    String clientSentence;
-    String capitalizedSentence;
-    ServerSocket welcomeSocket = new ServerSocket(8888);
-    System.out.println("Server started at Port: " + welcomeSocket.getLocalPort());
-    
-    while(true) {
-    	// for each client connection
-	    Socket connectionSocket = welcomeSocket.accept();
-	    System.out.println("OPENED: (" + connectionSocket.getInetAddress() + ", " + connectionSocket.getLocalPort() + ")");
+	private static ArrayList<Connection> connections = new ArrayList<>();
 
-	    while(true) {
-	    	// for each message to one client 
-	    	try {
-	    	    DataInputStream inFromClient = new DataInputStream(connectionSocket.getInputStream());
-	    	    DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
-	    		clientSentence = inFromClient.readUTF();
-	      		capitalizedSentence = "("+connectionSocket.getInetAddress() + ", " + connectionSocket.getLocalPort()+") MESSAGE: " + clientSentence.toUpperCase();
-	      		System.out.println("SEND: " + capitalizedSentence);
-	      		outToClient.writeUTF(capitalizedSentence);
-	    	} catch (EOFException e) {
-	    		System.out.println("CLOSE: (" + connectionSocket.getInetAddress() + ", " + connectionSocket.getLocalPort() + ")");
-	    		break;
-	    	}
-	    }
-    }
-  }
+	public static String printAllStatistics() {
+		String stats = "";
+		for(Connection c: connections) {
+			stats += c.printStatistic() + "\n";
+		}
+		return stats;
+	}
+	public static void sendBroadcastMessage(String message) {
+		for(Connection c: connections) {
+			c.sendMessage(message);
+		}
+	}
+	
+	public static void main(String argv[]) throws Exception {
+		ServerSocket welcomeSocket = new ServerSocket(8888);
+		System.out.println("Server started at Port: "
+				+ welcomeSocket.getLocalPort());
+
+		while (true) {
+			// for each client connection
+			Connection conn = new Connection(welcomeSocket.accept());
+			connections.add(conn);
+			conn.start();
+			
+		}
+	}
 }

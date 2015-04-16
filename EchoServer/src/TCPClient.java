@@ -18,20 +18,26 @@ class TCPClient extends Thread {
 			try {
 				clientSocket = new Socket((String) argv[0], Integer.parseInt(argv[1]));
 				DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-				DataInputStream inFromServer = new DataInputStream(clientSocket.getInputStream());
+				//DataInputStream inFromServer = new DataInputStream(clientSocket.getInputStream());
 				
 				System.out.println("Ohai, connected to Server: (" + argv[0] + ", " + argv[1] + ")");
+				ServerListener sl = new ServerListener(clientSocket);
+				sl.start();
+				
+				
 				while(true) {
 					System.out.print(">>> ");
 					sentence = inFromUser.readLine();
 					outToServer.writeUTF(sentence);
-					modifiedSentence = inFromServer.readUTF();
-					System.out.println("FROM SERVER: " + modifiedSentence);
-					if(modifiedSentence.endsWith("EXIT")) {
+					
+					
+					//modifiedSentence = inFromServer.readUTF();
+					/*System.out.println("FROM SERVER: " + modifiedSentence);
+					if(modifiedSentence.endsWith("exit")) {
 						clientSocket.close();
 						System.out.println("\nExiting server connection ... good bye");
 						break;
-					}
+					}*/
 				}
 			} catch (IOException e) {
 				throw new RuntimeException("Irgendwas schief gelaufen");
