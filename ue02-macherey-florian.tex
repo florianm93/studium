@@ -1,0 +1,79 @@
+\documentclass{article}
+
+\usepackage{texenv}
+
+\begin{document}
+
+%title
+%\noindent\makebox[\linewidth]{\rule{\textwidth}{0.2pt}}
+{\Large \centering \textsf{IT-Systeme: "Ubungsblatt 02} -- Florian Macherey, \today}\\
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.2pt}} \\
+
+%\normalsize \flushleft
+
+\section*{Aufgabe 1: CPU}
+\subsection*{1.a) Was ist ein Mikroprogramm?}
+Ein Mikroprogramm ist der Kern einer CISC (Complex Instruction Set Computer) 
+CPU. Mit diesem werden wenige, daf"ur aber sehr komplexe Befehle in der CPU 
+codiert. Beispielswiese wird die Division damit implementiert. Au\ss erdem sind 
+die Ausf"uhrungszeiten der Befehle unterschiedlich lang. 
+
+\subsection*{1.b) Was ist Pipelining? Welche Probleme sehen Sie hier beim 
+Multitasking?}
+Beim Pipeling werden aus Laufzeitgr"unden die Befehle nicht seriell hintereinander 
+sondern parallel ausgef"uhrt. Dabei muss beachtet werden das sie nicht echt 
+parallel ausgef"uhrt werden, sondern ein Prozess nur eine Resource gleichzeitig 
+belegen kann. \\
+
+Das Problem bei der parallelen Ausf"uhrung ist, dass es Dateninkonsitenten geben 
+kann, wenn ein Prozess auf die Daten eines anderen Prozesses zugreift, welche 
+durch diesen ver"andert werden. 
+
+\section*{Aufgabe 2: Speicher}
+\subsection*{2.a) Erkl"aren Sie die \dq Speicherpyramide\dq ~und ihre 
+Bedeitung f"ur den Aufbau eines Computers.}
+Die Speicherpyramide beschriebt den Zusammenhang von von Kosten $/$ Bit und 
+Kapazit"at, Zykluszeit und Zugriffszeit.  Je h"oher eine Art Speicher in der 
+Pyramide steht, desto gr"o\ss er sind die Kosten f"ur ein Speichermodul. 
+Gleichzeitig sind die Kapazit"at, Zykluszeit und Zugriffszeit kleiner bzw. geringer. 
+\\
+
+Von oben nach unten angeordnet sind in der obersten Stufe die Register bzw. der 
+On Chip Cache, in der zweiten Stufe der Cache (SRAM), in der dritten Stufe der 
+EDO RAM, FPM RAM, SDRAM und Rambus DRAM, in der vierten Stufe 
+Peripherieger"ate und in der f"unften und letzten Stufe die externen Speicher.   
+
+\subsection*{2.b) In welchen Einheiten werden Speicherinhalte 
+"ublicherweise geladen? Wo finden Sie diese Einheiten wieder?}
+Ein Cachespeicher enth"alt ein Array von Sets, in diesen Sets werden eine oder 
+mehrere Zeilen gespeichert. In jeder Zeile wird ein Block gespeichert. Diese 
+Variante der Speichereinheiten werden auch bei den Massenspeichern eingesetzt.  
+
+\section*{Aufgabe 3: Cache}
+\subsection*{3.a) Erkl"aren  Sie das Prinzip der \dq "ortlichen Lokalit"at\dq 
+~und warum es f"ur die Verwendung von Caches wichtig ist. Geben Sie auch 
+ein Beispiel, um ihre Erkl"arung zu veranschaulichen.}
+Die "ortliche Lokalit"at beschriebt, dass wenn entsprechend programmiert wird, 
+nachdem die Speicherzelle $A$ gelesen wurde, auch die Speicherstelle $B=A+k$ 
+f"ur $k$ klein gelesen wird. Es ist bei der Verwendung sehr wichtig, damit die 
+Caches effizient arbeiten k"onnen, da sie sehr kurze Antwortzeiten realisieren 
+k"onnen. \\
+
+Ein Beispiel f"ur eine gute "ortliche Lokalit"at ist zum Beispiel, wenn eine Addition 
+von zwei Zahlen durchgef"uhrt werden soll, dann ist praktisch wenn die zwei 
+Zahlen in zwei Pages direkt nebeneinander oder nah beieinander im Cache 
+liegen.  
+
+\subsection*{3.b) Erkl"aren Sie die interne Funktionsweise eines \dq Fully 
+Associate Cache\dq . Geben Sie auch ein Beispiel um Ihre Erkl"arung zu 
+veranschaulichen.}
+Bei einem Fully Associate Cache kann der Block an jeder Stelle im Cache eingef"ugt 
+werden. Die Addresse wird mithilfe einer Modulo-Rechnung berechnet und in dem 
+entsprechenden Block gespeichert. Au\ss erdem wird diese Adresse in den Tag 
+des Speicherblocks eingetragen. \\
+
+Wenn zum Beispiel 8 Cachepl"atze verf"ugbar sind, und Block 11 eingetragen 
+werden soll, wird dieser an der Stelle $11\,\, mod\,\, 8 = 3$ eingetragen. 
+Weiterhin 
+wird wie oben erw"ahnt dann die 3 in den Tag des Blocks eingetragen. 
+\end{document}

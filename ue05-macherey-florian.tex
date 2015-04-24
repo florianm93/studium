@@ -1,0 +1,61 @@
+\documentclass{article}
+
+
+\usepackage{texenv}
+\usepackage{multirow}
+
+\begin{document}
+
+%title
+%\noindent\makebox[\linewidth]{\rule{\textwidth}{0.2pt}}
+{\Large \centering \textsf{IT-Systeme: "Ubungsblatt 05} -- Florian Macherey, 
+\today}\\
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.2pt}} \\
+
+%\normalsize \flushleft
+
+\section*{Aufgabe 1: Rechnerarchitekturen}
+\subsection*{1a) Was sagt \dq Amdahl's Law\dq ~in Bezug auf die 
+Geschwindigkeitszunahme von parallelen Programmen auf geeigneten 
+Rechnerarchtikturen aus?}
+Ber der Berchnung wie stark ein Programm parallelisierbar ist, ber"ucksichtigt das  
+\dq Amdahl's Law\dq ~au\ss erdem den seriellen, also nicht parallelisierbaren 
+Teil. Die Formel f"ur die Berechnung ist damit:
+\[
+ S(p) = \dfrac{T(1)}{T(p)} = \dfrac{T(1)}{f*T(1) + (1-f)*\dfrac{T(1)}{p} = 
+ \dfrac{1}{f + 
+ \dfrac{1-f}{p}} }
+\]
+wobei \textit{f} der serielle Anteil ist, \textit{S(p)} der Speedup, \textit{T(1)} und 
+\textit{T(p)} der Zeitverbrauch mit einer beziewhungsweise \textit{p} CPUs und 
+\textit{p} die Anzahl der CPUs sind.  
+
+\subsection*{1b) Sind die Aussagen von \dq Amdahl's Law\dq ~realistisch? 
+Wenn nein, warum nicht? Geben Sie ein Beispiel}
+Die Aussagen von \dq Amdahl's Law\dq ~sind nicht realistisch, da zum Beispiel 
+der Overhead nicht ber"ucksichtigt wird. Au\ss erdem kann durch zum Beispiel 
+Caching Verfahren der ideale Speedup gr"o\ss er werden, in der Regel ist der 
+Speedup aber geringer als beim \dq Amdahl's Law\dq.
+
+\section*{Aufgabe 2: Multithreading}
+\subsection*{2a) Erkl"aren Sie den Begriff \dq Deadlock\dq. Geben Sie auch 
+ein Beispiel um Ihre Erkl"arung zu veranschaulichen.}
+Der Deadlock ist der Zustand wenn zwei oder mehr Prozesse sich gegenseitig 
+blockieren, weil sie auf Resourcen warten, die der jeweils andere Prozess noch 
+gesperrt hat. Da sie beide die andere Resource ben"otigen um weiter zu machen, 
+k"onnen sie ihre aktuelle Resourcen nicht freigeben. \\
+Als L"osungsstrategie kann man zum Beispiel zum Beginn der Laufzeit alle n"otigen 
+Locks anfordern, dies ist aber im allgemeinen ineffizient. Deshalb k"onnen die 
+vorhandenen Locks zuf"allig freigegeben werden, damit andere Prozesse diese 
+Locks anfordern k"onnen. Auch eine M"oglichkeit ist, wenn nach einer fest 
+definierten Zeit nicht alle Locks angefordert werden konnten, alle vorhandenen 
+Resourcen freizugeben, damit blockierte Prozesse diese locken k"onnen. 
+
+\subsection*{2b) Erkl"arung zu den Threads und dem Programm}
+In dem Programm wird die Berechnung des Matrixproduktes in einzelne Threads 
+zerlegt. Jeder Thread berechnet dabei einen Teil der Matrix, aber mindestens die 
+Zeilen. W"urden die Threads nur einzelne Matrixelemente berechnen, w"are der 
+Overhead daf"ur zu gro\ss. Deswegen gibt es auch eine Abfrage, dass es maximal 
+soviele Threads wie Dimensionen der Matrix gibt.
+
+\end{document}

@@ -1,0 +1,44 @@
+\documentclass{article}
+
+\usepackage{texenv}
+
+\begin{document}
+
+%title
+%\noindent\makebox[\linewidth]{\rule{\textwidth}{0.2pt}}
+{\Large \centering \textsf{IT-Systeme: "Ubungsblatt 01} -- Florian Macherey, \today}\\
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.2pt}} \\
+
+%\normalsize \flushleft
+
+\section*{Aufgabe 1}
+\subsection*{\textit{1.a) Sehen Sie sich die Komponenten auf einem typischen Mainboard an. Beschreiben Sie die Ihnen bekannten Komponenten mit Name, Funktion und einem Beispiel.}}
+\begin{tabular}{lll}
+    \toprule
+    \textbf{Name} & \textbf{Funktion} & \textbf{Beispiel} \\
+    \midrule
+    CPU & Abarbeiten von Berechnungen & Intel Core i7 \\
+    USB & Universal Serial Bus, z.B. externe Peripherie & Tastatur, Maus, \\ & & Speichersticks, ... \\
+    Northbridge & Kommunikation mit CPU und schnellen Bussen & -- \\
+    Southbridge & Kommunikation mit langsamen Bussen, \\ & PCI Bus, BIOS & -- \\
+    BIOS & Basic Input / Output System & laden des Betriebssystems \\
+    PCI & Slot f"ur Zusatzhardware & Grafikkarte \\
+    RAM-Sockel & Steckplatz f"ur Arbeitsspeicher & DDR2-RAM, DDR3-RAM \\
+    Buchsen / Stecker & Verbinden weiterer externer Ger"ate & RS232, Parallel, 3.5\dq -Klinke \\
+    \bottomrule
+\end{tabular}
+
+\subsection*{\textit{1.b) Was charakterisiert einen Von-Neumann-Rechner?}}
+Ein Von-Neuman-Rechner besesteht aus einer CPU, Speicher, einem Adressbus, einem Datenbus und Ein- / Ausgabeger"aten. Die Ein- / Ausgabeger"ate transportieren Daten und Programme in den Hauptspeicher. Der Hauptspeicher speichert byteweise diese Daten und Programme. Diese sind dann einzeln adressierbar. Au\ss erdem ist das BIOS (Basic I / O System) Teil des Hauptspeichers. Die Busse dienen der Kommunikation zwischen den Komponenten. Es gibt einen Daten- und Adressbus. Der Prozessor ist das Leit- und Rechenwerk des Rechners.
+
+Ein gro\ss es Problem des Von-Neumann-Rechners ist der Flaschenhals, dies bedeutet, dass Befehle schneller ausgef"uhrt werden k"onnen als der Zugriff auf den Speicher geschieht. Dadurch muss die CPU auf die Lese- und Schreibvorg"ange des Speichers warten.  
+
+Es gibt im Wesentlichen zwei Arten von Prozessoren, CISC (Complex Instruction Set Computer) und RISC (Reduced Instruction Set Computer).  Bei CISC CPUs sind weninge komplexe Befehle durch Microcode realisiert, bei RISC CPUs gibt es viele nicht komplexe Befehle die fest verdrahtet sind. Bei modernen CPUs kann mittlerweile keine stikte Trennung mehr zwischen RISC und CISC gemacht werden.   
+
+\subsection*{\textit{1.c) Aus was f"ur Komponenten besteht eine CPU?}}
+Eine CPU beinhaltet ein Rechen- und ein Leitwerk. Das Rechenwerk beseteht aus einer Einheit zum ausf"uhren von arithmetischen und logischen Operationen (ALU), sowie verschiedenen Registern zur zwischenspeicherung wie das Akkumulator-Register (A), das Puffer-Register (MBR) und das "Ubertrags-Register (L). Das Leitwerk enth"alt eine Einheit als Befehlsz"ahler (PC) und ein Register f"ur den aktuellen Befehl (IR). 
+
+\subsection*{\textit{1.d) Was ist ein Cache?}}
+Der Cache ist ein Speicher der die Daten und Befehlte enth"alt, die vom Prozessor vermutlich als n"achstes ben"otigt werden. Es ist ein Speicherbaustein mit sehr geringen Zugriffszeiten. Da Static RAM (SRAM) sehr teuer ist und sehr viel Platz in Anspruch nimmt, kann dieser heutzutage nur im Bereich von einigen Megabyte realisiert werden.  
+
+\end{document}
