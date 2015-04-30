@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-class TCPServer extends Thread {
+class TCPServer {
 	private static ArrayList<Connection> connections = new ArrayList<>();
 
 	public static String printAllStatistics() {

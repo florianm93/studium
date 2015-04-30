@@ -21,7 +21,7 @@ public class ServerListener extends Thread {
 				sentenceFromServer = inFromServer.readUTF();
 
 				mutex.lock();
-				System.out.print("\rFROM SERVER: " + sentenceFromServer + "\n>>> ");
+				System.out.print("\b\b\b\b<<< " + sentenceFromServer + "\n>>> ");
 				mutex.unlock();
 				if (sentenceFromServer.endsWith("exit")) {
 					this.socket.close();
