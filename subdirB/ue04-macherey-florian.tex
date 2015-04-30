@@ -1,0 +1,83 @@
+\documentclass{article}
+
+
+\usepackage{texenv}
+\usepackage{multirow}
+
+\begin{document}
+
+%title
+%\noindent\makebox[\linewidth]{\rule{\textwidth}{0.2pt}}
+{\Large \centering \textsf{IT-Systeme: "Ubungsblatt 04} -- Florian Macherey, 
+\today}\\
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.2pt}} \\
+
+%\normalsize \flushleft
+
+\section*{Aufgabe 1: Scheduling}
+\subsection*{Gegeben sind 5 Jobs mit den jeweils angegebenen 
+Ausf"uhrungszeiten. Berechnen Sie jeweils die mittlere Verweildauer f"ur die 
+Schedulingalgorithmen \dq First Come, First Serve\dq ~und \dq Shortest 
+Job First\dq ~.}
+\begin{tabular}{lcc}
+\toprule
+Jobs & FCFS  Zeiten und Reihenfolge & SJF Zeiten und Reihenfolge \\
+\midrule
+Job A: 10 Minuten & 10 Minuten, 1. & 22 Minten, 4.\\
+Job B: 7 Minuten & 17 Minuten, 2. & 12 Minuten, 3.\\
+Job C: 3 Minuten & 20 Minuten, 3. & 5 Minuten, 2.\\
+Job D: 17 Minuten & 37 Minuten, 4. & 39 Minuten, 5.\\
+Job E: 2 Minuten & 39 Minuten, 5. & 2 Minuten, 1.\\
+\midrule
+Mittlere Verweildauern: & $\frac{10+17+20+37+39}{5} = 24.6\,\,Minuten$ & 
+$\frac{2+5+12+22+39}{5} = 16\,\,Minuten$\\
+\bottomrule
+\end{tabular}
+
+\section*{Aufgabe 2: Paging}
+\subsection*{Folge von Seitenanforderungen: \texttt{1, 2, 3, 4, 1, 2, 5, 1, 2, 5} 
+einmal mit FIFO und LRU Verdr"angungsstrategie}
+
+\begin{tabular}{|l|l|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\multicolumn{2}{|l|}{Referenzfolge (FIFO) } & 1 & 2 & 3 & 4 & 1 & 2 & 5 & 1 & 2 & 
+5 \\
+\hline
+\multirow{4}{*}{Arbeitsspeicher} & Page 1 & 1 & 1 & 1 & 1 & 1 & 1 & 5 & 5 & 5 & 
+5 \\
+ & Page 2 & -- & 2 & 2 & 2 & 2 & 2 & 2 & 1 & 1 & 1 \\
+ & Page 3 & -- & -- & 3 & 3 & 3 & 3 & 3 & 3 & 2 & 2 \\
+ & Page 4 & -- & -- & -- & 4 & 4 & 4 & 4 & 4 & 4 & 4 \\
+\hline
+\multirow{4}{*}{Kontrollzustand} & Page 1 & 0 & 1 & 2 & 3 & 4 & 5 & 0 & 1 & 2 & 
+3 \\
+ & Page 2 & -- & 0 & 1 & 2 & 3 & 4 & 5 & 0 & 1 & 2 \\
+ & Page 3 & -- & -- & 0 & 1 & 2 & 3 & 4 & 5 & 0 & 1 \\
+ & Page 4 & -- & -- & -- & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline
+Einlagerungen & \multicolumn{11}{|l|}{7} \\
+\hline
+\end{tabular}
+
+\begin{tabular}{|l|l|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\multicolumn{2}{|l|}{Referenzfolge (LRU) } & 1 & 2 & 3 & 4 & 1 & 2 & 5 & 1 & 2 & 
+5 \\
+\hline
+\multirow{4}{*}{Arbeitsspeicher} & Page 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 
+5 \\
+ & Page 2 & -- & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 \\
+ & Page 3 & -- & -- & 3 & 3 & 3 & 3 & 5 & 5 & 5 & 5 \\
+ & Page 4 & -- & -- & -- & 4 & 4 & 4 & 4 & 4 & 4 & 4 \\
+\hline
+\multirow{4}{*}{Kontrollzustand} & Page 1 & 0 & 1 & 2 & 3 & 0 & 1 & 2 & 0 & 1 & 
+2 \\
+ & Page 2 & -- & 0 & 1 & 2 & 3 & 0 & 1 & 2 & 0 & 1 \\
+ & Page 3 & -- & -- & 0 & 1 & 2 & 3 & 0 & 1 & 2 & 0 \\
+ & Page 4 & -- & -- & -- & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline
+Einlagerungen & \multicolumn{11}{|l|}{5} \\
+\hline
+\end{tabular}
+
+\end{document}

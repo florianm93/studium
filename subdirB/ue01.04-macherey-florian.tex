@@ -1,0 +1,73 @@
+\documentclass{article}
+
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, top=30mm, left=25mm, right=25mm, bottom=25mm]{geometry}
+\usepackage{booktabs}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{MnSymbol}
+
+\parindent=0pt
+
+% own color definitions:
+\definecolor{TeaGreen}{HTML}{FFFFBB}
+
+% setting for lstlistings
+\lstset{
+	basicstyle=\small,
+	breakatwhitespace=true,
+	breaklines=true,
+	commentstyle=\color{ProcessBlue},
+	keepspaces=true,
+	keywordstyle=\color{red},
+	rulecolor=\color{black}, 
+	numbers=left,
+	stringstyle=\color{RawSienna},
+	firstnumber=1,
+	numberfirstline=true,
+	stepnumber=5,
+	tabsize=4,
+	language=[x86masm]Assembler,
+    backgroundcolor=\color{TeaGreen},
+	prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\swarrow}},
+	postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\rcurvearrowse\space}},	
+}
+
+
+\begin{document}
+
+%title
+{\Large \centering \textsf{IT-Systeme: "Ubungsblatt 01} -- Florian Macherey, \today}\\
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.2pt}} \\
+
+\section*{Aufgabe 4 \textit{Was macht das folgende Programm?}}
+\begin{lstlisting}
+mov esp,0x50
+jmp %start
+
+%attack: 
+mov [esp], 1
+ret
+           
+%sub:
+mov eax, ebx
+add eax, ecx
+ret
+                        
+%start:
+mov eax,0
+mov ebx, 5
+mov ecx, 7
+call %sub
+                                                
+mov eax, 0
+mov ebx, 12
+mov ecx, 11
+call %sub
+                                                                    
+call %attack
+\end{lstlisting}
+Das Programm l"auft in einer Endlosschleife. Es wird zuerst die Summe von 5 und 7, danach die von 12 und 11 berechnet. Dies wird jeweils in der Untermethode \texttt{sub} ausgef"uhrt. Danach wird in der \texttt{attack}-Methode ein Wert in dem Stack gesetzt. 
+
+\end{document}
