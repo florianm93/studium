@@ -1,0 +1,7 @@
+*.tgz
+*.class
+*.pdf
+*bin/*
+.metadata/
+jaxb-demo/*
+RemoteSystemsTempFiles/*
