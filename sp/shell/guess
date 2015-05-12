@@ -1,0 +1,21 @@
+#!/bin/bash
+
+s=`date +%S`
+read e
+
+typeset -i s
+typeset -i e
+
+while true ; do
+        if [ $e -lt $s ] ; then
+                echo "greater"
+        elif [ $e -gt $s ] ; then
+                echo "lesser"
+        else
+                echo "found"
+                break
+        fi
+        read e
+done
+
+        

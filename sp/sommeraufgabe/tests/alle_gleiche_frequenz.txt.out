@@ -1,0 +1,16 @@
+**
+** Daten aus Datei: tests/alle_gleiche_frequenz.txt
+**
+
+Senderpositionen (X,Y) und Senderradien:
+S01:   3.500,   3.500,   1.500
+S02:   7.000,   7.000,   1.500
+S03:   0.000,   0.000,   1.500
+S04:   0.000,   7.000,   1.500
+S05:   7.000,   0.000,   1.500
+
+Frequenzzuordnung:
+Anzahl benoetiger Frequenzen: 1
+ Frequenz | Sender
+=======================================================================================
+    0     |  S01  S02  S03  S04  S05  

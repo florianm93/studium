@@ -1,0 +1,7 @@
+Aufgabe 5.1
+-----------
+
+Da sizeof(int)=4 ist, und es eine 2x3-Matrix ist, sind 6 Elemente in dem array. Dadurch ist der Speicherplatzbedarf fuer die ganze Matrix 24 Bytes.
+
+Die Adresse matrix[1][0] liegt an diesem Fall an der Speicherstelle 4. Die Adressen werden in Pointer umgeformt. Es gilt das matrix[i][j] == *(*(matrix+i)+j) ist. 
+

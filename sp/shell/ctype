@@ -1,0 +1,6 @@
+case $1 in 
+    [a-zA-Z] ) echo "letter" ;;
+    [0-9] ) echo "digit" ;;
+    ? ) echo "other" ;;
+    * ) echo "longer than one char" ;;
+esac

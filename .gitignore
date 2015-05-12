@@ -6,3 +6,4 @@ bin/*
 jaxb-demo/*
 RemoteSystemsTempFiles/*
 .recommenders/
+*.swp

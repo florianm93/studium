@@ -1,0 +1,8 @@
+**
+**    Alle Sender können die gleiche Frequenz benutzen
+**
+3.5 3.5 1.5
+7 7 1.5
+0 0 1.5
+0 7 1.5
+7 0 1.5

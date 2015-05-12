@@ -1,0 +1,39 @@
+struct Element {
+    int value;
+    Element *next;
+    Element(int v, Element *n) : value(v), next(n) { }
+};
+void insert(Element* &rp, int v) {
+    if (rp != NULL) {
+        if (v > rp->value)     // Sortieren
+            insert(rp->next, v); // Rekursion
+        else rp=new Element(v, rp);
+    } else rp=new Element(v, NULL);
+}
+void remove(Element* &rp, int v) {
+    if (rp != NULL) {
+        if (rp->value == v) {
+            Element *tmp=rp;
+            rp = rp->next;
+            delete tmp;
+            remove(rp, v);
+        } else remove(rp->next, v); // Rekursion
+    }
+    }
+    void print(Element *p) {
+        while(p) {
+            std::cout << p->value << " ";
+            p=p->next;
+        }
+        std::cout << std::endl;
+    }
+    
+    int main(void) {
+        Element * head = NULL;
+        insert(head, 2);
+        insert(head, 5);
+        insert(head, 1);
+        print(head);
+        remove(head, 2);
+        print(head);
+    }
