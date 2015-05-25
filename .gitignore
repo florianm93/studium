@@ -8,3 +8,13 @@ RemoteSystemsTempFiles/*
 .recommenders/
 *.swp
 *._*
+*.aux
+*.out
+*.toc
+*.log
+*.lof
+*.snm
+*.nav
+*.fls
+*.fdb_latexmk
+
