@@ -7,7 +7,7 @@ jaxb-demo/*
 RemoteSystemsTempFiles/*
 .recommenders/
 *.swp
-*._*
+._*
 *.aux
 *.out
 *.toc
